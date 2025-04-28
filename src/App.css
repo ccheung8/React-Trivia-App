@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.start,
+.question,
+.results {
+  padding: 20px;
+}
+
+.start {
+  text-align: center;
+}
+
+.question {
+  width: 300px;
+  text-align: center;
+}
+
+.question > div {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.results {
+  text-align: center;
+}
