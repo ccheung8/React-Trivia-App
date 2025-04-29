@@ -1,9 +1,14 @@
 import React from "react";
+import { CategoryComponent } from "./CategoryComponent";
+import { DifficultyComponent } from "./DifficultyComponent";
 
-export function StartComponent({ onClick, token }) {
+export function StartComponent({ onClick, token, setDifficulty, setCategory }) {
   return (
     <div className="start">
-      <p>Press start</p>
+      <div className="dropdowns">
+        <DifficultyComponent setDifficulty={setDifficulty} />
+        <CategoryComponent setCategory={setCategory} />
+      </div>
       <button
         disabled={token == null}
         onClick={onClick}
@@ -12,5 +17,5 @@ export function StartComponent({ onClick, token }) {
         Start Game
       </button>
     </div>
-  )
+  );
 }

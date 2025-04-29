@@ -9,7 +9,7 @@ function App() {
   const [gameState, setGameState] = useState(0) // 0, 1, 2
   const [score, setScore] = useState(0);
   
-  const { question, countdown, token, loading, fetchNextQuestion } = useTrivia();
+  const { question, countdown, token, loading, setDifficulty, setCategory, fetchNextQuestion } = useTrivia();
 
   async function handleAnswerSelect(answer) {
     if (answer === question.correct_answer) {
@@ -36,10 +36,12 @@ function App() {
       <h1>Trivia App</h1>
       {gameState == 0 && <StartComponent
         token={token}
+        setDifficulty={setDifficulty}
+        setCategory={setCategory}
         onClick={() => {
           setGameState(1);
           fetchNextQuestion();
-      }}
+        }}
       />}
       {gameState == 1 && 
         <QuestionComponent

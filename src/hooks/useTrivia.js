@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-const ENDPOINT = "https://opentdb.com/api.php?amount=1&category=18&difficulty=easy&type=boolean";
+const ENDPOINT = "https://opentdb.com/api.php?amount=1&type=boolean";
 const REQUEST_TOKEN = "https://opentdb.com/api_token.php?command=request";
 
 export default function useTrivia() {
@@ -8,21 +8,29 @@ export default function useTrivia() {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(null);
   const [countdown, setCountdown] = useState(0);
+  const [difficulty, setDifficulty] = useState("");
+  const [category, setCategory] = useState("");
 
   async function fetchNextQuestion() {
     setLoading(true);
-    const res = await fetch(ENDPOINT);
+    console.log(ENDPOINT + difficulty + category + "&token=" + token);
+    const res = await fetch(
+      ENDPOINT +
+      difficulty +
+      category +
+      "&token=" +
+      token
+    );
     const data = await res.json();
     setQuestion(data.results[0]);
     setLoading(false);
-    // starts countdown
+    // starts countdown after fetching question
     setCountdown(5);
   }
 
   async function fetchSessionToken() {
     if (!token) {
       const data = await (await fetch(REQUEST_TOKEN)).json();
-      console.log(data.token);
       setToken(data.token);
     }
   }
@@ -32,8 +40,6 @@ export default function useTrivia() {
 
     let myInterval = setInterval(() => {
       setCountdown(prev => prev - 1);
-      console.log(countdown - 1);
-      clearTimeout(myInterval);
     }, 1000);
 
     return () => clearInterval(myInterval);
@@ -49,6 +55,8 @@ export default function useTrivia() {
     countdown,
     loading,
     token,
+    setDifficulty,
+    setCategory,
     fetchNextQuestion
   }
 }

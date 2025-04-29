@@ -16,6 +16,13 @@
   text-align: center;
 }
 
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
 .question {
   width: 300px;
   text-align: center;
