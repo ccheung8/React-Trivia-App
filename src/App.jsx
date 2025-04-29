@@ -76,7 +76,7 @@ function App() {
           question={question.question || "dummy question"}
         />
       )}
-      {((gameState == 2) || (gameState == 3)) && (
+      {(gameState == 2 || gameState == 3) && (
         <ResultsComponent
           questionLog={questionLog}
           result={score}

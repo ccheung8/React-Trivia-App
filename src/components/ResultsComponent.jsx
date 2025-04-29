@@ -1,7 +1,12 @@
 import React from "react";
 import { QuestionLogTable } from "./QuestionLogTable";
 
-export function ResultsComponent({ questionLog, result, gameState, resetGame }) {
+export function ResultsComponent({
+  questionLog,
+  result,
+  gameState,
+  resetGame,
+}) {
   return (
     <div className="results">
       {gameState == 2 && <h2>Game Over</h2>}
