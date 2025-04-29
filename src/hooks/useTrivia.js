@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const ENDPOINT = "https://opentdb.com/api.php?amount=1&type=boolean";
 const REQUEST_TOKEN = "https://opentdb.com/api_token.php?command=request";
@@ -13,13 +13,8 @@ export default function useTrivia() {
 
   async function fetchNextQuestion() {
     setLoading(true);
-    console.log(ENDPOINT + difficulty + category + "&token=" + token);
     const res = await fetch(
-      ENDPOINT +
-      difficulty +
-      category +
-      "&token=" +
-      token
+      ENDPOINT + difficulty + category + "&token=" + token
     );
     const data = await res.json();
     setQuestion(data.results[0]);
@@ -39,7 +34,7 @@ export default function useTrivia() {
     if (countdown <= 0) return;
 
     let myInterval = setInterval(() => {
-      setCountdown(prev => prev - 1);
+      setCountdown((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(myInterval);
@@ -49,7 +44,7 @@ export default function useTrivia() {
   useEffect(() => {
     fetchSessionToken();
   }, []);
-  
+
   return {
     question,
     countdown,
@@ -57,6 +52,6 @@ export default function useTrivia() {
     token,
     setDifficulty,
     setCategory,
-    fetchNextQuestion
-  }
+    fetchNextQuestion,
+  };
 }

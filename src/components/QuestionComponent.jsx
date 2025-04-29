@@ -1,10 +1,10 @@
 import React from "react";
 
-export function QuestionComponent({ question, onAnswerSelect, counter}) {
+export function QuestionComponent({ question, onAnswerSelect, counter }) {
   return (
     <div className="question card">
       <p dangerouslySetInnerHTML={{ __html: question }}></p>
-      <p>{counter > 0 ? counter : "Answer!"}</p>
+      <p style={{ margin: "8px" }}>{counter > 0 ? counter : "Answer!"}</p>
       <div>
         <button
           disabled={counter > 0}
@@ -22,5 +22,5 @@ export function QuestionComponent({ question, onAnswerSelect, counter}) {
         </button>
       </div>
     </div>
-  )
+  );
 }
