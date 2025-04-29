@@ -9,6 +9,7 @@ export function QuestionLogItem({ question, index }) {
       ></td>
       <td>{question.answer}</td>
       <td>{question.correctAnswer}</td>
+      <td>{question.answer == question.correctAnswer ? "Correct" : "Incorrect"}</td>
     </tr>
   );
 }

@@ -9,6 +9,7 @@ export function QuestionLogTable({ questionLog }) {
           <th>Question</th>
           <th>Your Answer</th>
           <th>Correct Answer</th>
+          <th>Result</th>
         </tr>
       </thead>
       <tbody>
