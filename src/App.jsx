@@ -6,7 +6,6 @@ import { StartComponent } from "./components/StartComponent";
 import useTrivia from "./hooks/useTrivia";
 
 function App() {
-  const [gameState, setGameState] = useState(0); // 0, 1, 2
   const [score, setScore] = useState(0);
   const [questionLog, setQuestionLog] = useState([]);
 
@@ -15,6 +14,8 @@ function App() {
     countdown,
     token,
     loading,
+    gameState,
+    setGameState,
     setDifficulty,
     setCategory,
     fetchNextQuestion,
@@ -35,6 +36,10 @@ function App() {
       // increments score
       setScore((prev) => prev + 1);
       fetchNextQuestion();
+      // changes gameState if no more questions
+      if (question == 4) {
+        setGameState(3);
+      }
     } else {
       // ends game
       setGameState(2);
@@ -71,14 +76,15 @@ function App() {
           question={question.question || "dummy question"}
         />
       )}
-      {gameState == 2 && (
+      {((gameState == 2) || (gameState == 3)) && (
         <ResultsComponent
           questionLog={questionLog}
           result={score}
+          gameState={gameState}
           resetGame={() => {
             setGameState(0);
-            setDifficulty("");  // resets difficulty
-            setCategory("");    // resets category
+            setDifficulty(""); // resets difficulty
+            setCategory(""); // resets category
           }}
         />
       )}

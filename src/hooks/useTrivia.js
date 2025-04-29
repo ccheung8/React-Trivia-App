@@ -10,6 +10,7 @@ export default function useTrivia() {
   const [countdown, setCountdown] = useState(0);
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
+  const [gameState, setGameState] = useState(0); // 0, 1, 2
 
   async function fetchNextQuestion() {
     setLoading(true);
@@ -17,6 +18,12 @@ export default function useTrivia() {
       ENDPOINT + difficulty + category + "&token=" + token
     );
     const data = await res.json();
+    // returns early and sets question to 4 if no more questions
+    if (data.response_code == 4) {
+      setGameState(3);
+      setLoading(false);
+      return;
+    }
     setQuestion(data.results[0]);
     setLoading(false);
     // starts countdown after fetching question
@@ -50,6 +57,8 @@ export default function useTrivia() {
     countdown,
     loading,
     token,
+    gameState,
+    setGameState,
     setDifficulty,
     setCategory,
     fetchNextQuestion,
