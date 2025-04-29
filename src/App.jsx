@@ -8,6 +8,7 @@ import useTrivia from './hooks/useTrivia'
 function App() {
   const [gameState, setGameState] = useState(0) // 0, 1, 2
   const [score, setScore] = useState(0);
+  
   const { question, countdown, token, loading, fetchNextQuestion } = useTrivia();
 
   async function handleAnswerSelect(answer) {

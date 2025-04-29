@@ -4,6 +4,7 @@ export function QuestionComponent({ question, onAnswerSelect, counter}) {
   return (
     <div className="question card">
       <p dangerouslySetInnerHTML={{ __html: question }}></p>
+      <p>{counter > 0 ? counter : "Answer!"}</p>
       <div>
         <button
           disabled={counter > 0}
